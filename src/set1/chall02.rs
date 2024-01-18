@@ -8,7 +8,7 @@ pub fn solve_chall02() {
     println!("{}", util::bytes_to_hex(&output))
 }
 
-fn xor(a: &[u8], b: &[u8]) -> Vec<u8> {
+pub fn xor(a: &[u8], b: &[u8]) -> Vec<u8> {
     if a.len() != b.len() {
         panic!("Operators have different length")
     }
