@@ -1,0 +1,8 @@
+[package]
+name = "cryptopals"
+version = "0.1.0"
+edition = "2021"
+authors = ["Rafael Oliveira"]
+description = "Solutions to the Cryptopals Challenges"
+repository = "https://github.com/RafDevX/cryptopals"
+license = "MIT"
