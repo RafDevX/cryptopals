@@ -12,6 +12,7 @@ fn main() {
 
     match chall_nr {
         1 => set1::chall01::solve_chall01(),
+        2 => set1::chall02::solve_chall02(),
         _ => unimplemented!("Unknown challenge number"),
     }
 }
