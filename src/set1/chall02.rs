@@ -1,7 +1,7 @@
 use crate::util;
 
 pub fn solve_chall02() {
-    let input = util::read_hex_lines();
+    let input = util::read_hex_lines_stdin();
     let a = input.first().expect("No first operand provided");
     let b = input.get(1).expect("No second operand provided");
     let output = xor(a, b);
