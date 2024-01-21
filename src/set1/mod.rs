@@ -5,3 +5,4 @@ pub mod chall04;
 pub mod chall05;
 pub mod chall06;
 pub mod chall07;
+pub mod chall08;
