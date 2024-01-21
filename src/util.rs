@@ -87,3 +87,12 @@ pub fn get_file_reader(path: &str) -> Box<dyn io::BufRead> {
     let file = std::fs::File::open(path).expect("Failed to open file");
     Box::new(io::BufReader::new(file))
 }
+
+/// Counts how many occurrences of a given needle are in a given haystack.
+#[cfg(test)]
+pub fn count_occurrences(haystack: &[u8], needle: &[u8]) -> usize {
+    haystack
+        .windows(needle.len())
+        .filter(|w| w.iter().zip(needle.iter()).all(|(x, y)| x == y))
+        .count()
+}

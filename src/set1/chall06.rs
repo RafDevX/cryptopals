@@ -38,7 +38,7 @@ impl From<&char> for chall01::Base64Char {
     }
 }
 
-fn base64_decode(input: &str) -> Result<Vec<u8>, ()> {
+pub fn base64_decode(input: &str) -> Result<Vec<u8>, ()> {
     input
         .as_bytes()
         .iter()
@@ -165,12 +165,7 @@ mod tests {
         assert_eq!("Terminator X: Bring the noise".as_bytes(), key);
         // message is too long to check the entire thing here; this is a heuristic
         let msg_needle = "Play that funky music".as_bytes();
-        assert_eq!(
-            6,
-            msg.windows(msg_needle.len())
-                .filter(|w| w.iter().zip(msg_needle.iter()).all(|(x, y)| x == y))
-                .count()
-        );
+        assert_eq!(6, util::count_occurrences(&msg, msg_needle));
     }
 
     #[test]
