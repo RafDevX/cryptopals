@@ -16,6 +16,7 @@ fn main() {
         3 => set1::chall03::solve_chall03(),
         4 => set1::chall04::solve_chall04(),
         5 => set1::chall05::solve_chall05(),
+        6 => set1::chall06::solve_chall06(),
         _ => unimplemented!("Unknown challenge number"),
     }
 }

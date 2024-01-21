@@ -74,6 +74,16 @@ pub fn read_hex_lines_stdin() -> Vec<Vec<u8>> {
 /// Panics if it fails to open a file or read a line, or if any is an invalid hex sequence.
 #[cfg(test)]
 pub fn read_hex_lines_file(path: &str) -> Vec<Vec<u8>> {
+    read_hex_lines(get_file_reader(path))
+}
+
+/// Opens a file and returns a buffered reader for it.
+///
+/// # Panics
+///
+/// Panics if it fails to open the file.
+#[cfg(test)]
+pub fn get_file_reader(path: &str) -> Box<dyn io::BufRead> {
     let file = std::fs::File::open(path).expect("Failed to open file");
-    read_hex_lines(Box::new(io::BufReader::new(file)))
+    Box::new(io::BufReader::new(file))
 }

@@ -8,7 +8,7 @@ pub fn solve_chall05() {
     println!("{}", util::bytes_to_hex(&output));
 }
 
-fn repeating_key_xor(plaintext: &[u8], key: &[u8]) -> Vec<u8> {
+pub fn repeating_key_xor(plaintext: &[u8], key: &[u8]) -> Vec<u8> {
     plaintext
         .iter()
         .zip(key.iter().cycle())

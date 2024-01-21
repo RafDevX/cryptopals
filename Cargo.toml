@@ -6,3 +6,6 @@ authors = ["Rafael Oliveira"]
 description = "Solutions to the Cryptopals Challenges"
 repository = "https://github.com/RafDevX/cryptopals"
 license = "MIT"
+
+[dependencies]
+itertools = "0.12.0"

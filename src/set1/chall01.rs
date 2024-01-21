@@ -8,7 +8,7 @@ pub fn solve_chall01() {
     println!("{output}")
 }
 
-enum Base64Char {
+pub enum Base64Char {
     Char(u8),
     Padding,
 }
