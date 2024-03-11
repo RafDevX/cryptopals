@@ -1,6 +1,7 @@
 use std::env;
 
 mod set1;
+mod set2;
 mod util;
 
 fn main() {
@@ -19,6 +20,9 @@ fn main() {
         6 => set1::chall06::solve_chall06(),
         7 => set1::chall07::solve_chall07(),
         8 => set1::chall08::solve_chall08(),
+
+        9 => set2::chall09::solve_chall09(),
+
         _ => unimplemented!("Unknown challenge number"),
     }
 }
