@@ -10,3 +10,4 @@ license = "MIT"
 [dependencies]
 itertools = "0.12.0"
 openssl = "0.10.63"
+rand = "0.8.5"

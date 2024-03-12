@@ -6,7 +6,7 @@ pub fn solve_chall09() {
     println!("{}", String::from_utf8(output).expect("Invalid UTF-8"))
 }
 
-fn pad(text: &[u8], target_length: usize) -> Vec<u8> {
+pub fn pad(text: &[u8], target_length: usize) -> Vec<u8> {
     if text.len() > target_length {
         panic!("Text too long for {target_length}!");
     };
