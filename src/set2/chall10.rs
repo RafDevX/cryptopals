@@ -33,11 +33,18 @@ pub fn encrypt_aes_ecb(plaintext: &[u8], key: &[u8]) -> OpenSSLResult<Vec<u8>> {
     let mut encrypter = symm::Crypter::new(cipher, symm::Mode::Encrypt, key, None)?;
     encrypter.pad(false);
 
-    let mut ciphertext = vec![0; 96]; // openssl complains if <96
-    encrypter.update(plaintext, &mut ciphertext)?;
+    plaintext
+        .chunks(16)
+        .map(|block| chall09::pad(block, 16))
+        .map(|block| {
+            let mut ciphertext = vec![0; 1024]; // openssl complains if too short
+            encrypter.update(&chall09::pad(&block, 16), &mut ciphertext)?;
 
-    ciphertext.truncate(plaintext.len());
-    Ok(ciphertext)
+            ciphertext.truncate(block.len());
+            Ok(ciphertext)
+        })
+        .flatten_ok()
+        .collect()
 }
 
 struct StatefulCBC {

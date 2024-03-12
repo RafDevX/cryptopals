@@ -4,14 +4,14 @@ use rand::{self, Rng};
 use super::chall10;
 
 pub fn solve_chall11() {
-    if aes_ecb_detector(aes_encryption_oracle).expect("Failed to detect") {
+    if aes_ecb_detector(&aes_encryption_oracle).expect("Failed to detect") {
         println!("Mode: ECB");
     } else {
         println!("Mode: CBC");
     }
 }
 
-fn random_aes_key() -> Vec<u8> {
+pub fn random_aes_key() -> Vec<u8> {
     let bytes: [u8; 16] = rand::random();
 
     bytes.to_vec()
@@ -45,7 +45,7 @@ fn aes_encryption_oracle(plaintext: &[u8]) -> chall10::OpenSSLResult<Vec<u8>> {
     }
 }
 
-fn aes_ecb_detector<F>(f: F) -> chall10::OpenSSLResult<bool>
+pub fn aes_ecb_detector<F>(f: &F) -> chall10::OpenSSLResult<bool>
 where
     F: Fn(&[u8]) -> chall10::OpenSSLResult<Vec<u8>>,
 {
@@ -62,7 +62,7 @@ mod tests {
 
     #[test]
     fn is_correct() {
-        let result = aes_ecb_detector(aes_encryption_oracle).expect("Failed to detect");
+        let result = aes_ecb_detector(&aes_encryption_oracle).expect("Failed to detect");
         let expected = unsafe { ORACLE_CHOICE };
 
         assert_eq!(expected, result);
