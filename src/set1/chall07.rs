@@ -23,10 +23,19 @@ pub fn solve_chall07() {
     );
 }
 
-fn decrypt_aes_ecb(ciphertext: &[u8], key: &[u8]) -> Result<Vec<u8>, openssl::error::ErrorStack> {
+pub fn decrypt_aes_ecb(
+    ciphertext: &[u8],
+    key: &[u8],
+) -> Result<Vec<u8>, openssl::error::ErrorStack> {
     let cipher = symm::Cipher::aes_128_ecb();
+    let mut decrypter = symm::Crypter::new(cipher, symm::Mode::Decrypt, key, None)?;
+    decrypter.pad(false);
 
-    symm::decrypt(cipher, key, None, ciphertext)
+    let mut plaintext = vec![0; 2896]; // openssl complains if <2896
+    decrypter.update(ciphertext, &mut plaintext)?;
+
+    plaintext.truncate(ciphertext.len());
+    Ok(plaintext)
 }
 
 #[cfg(test)]
